@@ -1,0 +1,8 @@
+MIDlet-1: Mobile Azan,/cd.png,main.MainForm
+MIDlet-Jar-Size: 1058252
+MIDlet-Jar-URL: MobileAzan.jar
+MIDlet-Name: Mobile Azan
+MIDlet-Vendor: Alaa El-Din Farouk
+MIDlet-Version: 1.0.0
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0

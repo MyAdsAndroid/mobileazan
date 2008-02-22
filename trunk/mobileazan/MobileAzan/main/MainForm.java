@@ -39,6 +39,11 @@ public class MainForm extends MIDlet implements CommandListener{
 	private TextField gmtText;
 	private ChoiceGroup methodList;
 	private Gauge volGauge;
+	
+	private Command exit = new Command(Tokens.get(Tokens.EXIT),Command.EXIT,1);
+	private Command set = new Command(Tokens.get(Tokens.SET),Command.OK,1);
+	private Command test = new Command(Tokens.get(Tokens.TEST),Command.SCREEN,1);
+	private Command hide = new Command(Tokens.get(Tokens.HIDE),Command.BACK,1);
 
 	private Timer timer;
 	private AzanPlayer player;
@@ -136,11 +141,11 @@ public class MainForm extends MIDlet implements CommandListener{
 		Display.getDisplay(this).setCurrent(form);
 	}
 
-	public void commandAction(Command arg0, Displayable arg1) {
-		String label = arg0.getLabel();
-		if(label.equals("Exit"))
+	public void commandAction(Command cmd, Displayable arg1) {
+		String label = cmd.getLabel();
+		if(cmd == exit)
 			notifyDestroyed();
-		else if (label.equals("Settings")) {
+		else if (cmd == set) {
 			optionsForm = new Form("Options");
 			latText = new TextField("Latitude :",Float.toString(settings.getLat()),7,TextField.DECIMAL);
 			optionsForm.append(latText);
@@ -172,11 +177,11 @@ public class MainForm extends MIDlet implements CommandListener{
 		} else if (label.equals("Stop Azan")) {
 			player.stop();
 			setFocus();
-		} else if (label.equals("Test Azan")) {
+		} else if (cmd == test) {
 				showAzanForm("Test");
 				player = new AzanPlayer(this);
 				player.start();
-			} else if (label.equals("Minimize")) {
+			} else if (cmd == hide) {
 				Display.getDisplay(this).setCurrent(null);
 			}
 
@@ -197,25 +202,24 @@ public class MainForm extends MIDlet implements CommandListener{
 			Calendar now = Calendar.getInstance();
 			prayerTimes = PT.getPrayerTimes(now.get(Calendar.YEAR), now.get(Calendar.MONTH) +1, now.get(Calendar.DAY_OF_MONTH), settings.getLat(), settings.getLon(), settings.getGmt(),settings.getMethod());
 			prayers = new StringItem[6];
-			prayers[0] = new StringItem("Fajr",prayerTimes[0].getTime());
-			prayers[1] = new StringItem("Shrooq",prayerTimes[1].getTime());
-			prayers[2] = new StringItem("Duhr",prayerTimes[2].getTime());
-			prayers[3] = new StringItem("Asr",prayerTimes[3].getTime());
-			prayers[4] = new StringItem("Maghrib",prayerTimes[4].getTime());
-			prayers[5] = new StringItem("Esha",prayerTimes[5].getTime());
+			prayers[0] = new StringItem(Tokens.get(Tokens.FAJR),prayerTimes[0].getTime());
+			prayers[1] = new StringItem(Tokens.get(Tokens.SHRUQ),prayerTimes[1].getTime());
+			prayers[2] = new StringItem(Tokens.get(Tokens.DUHR),prayerTimes[2].getTime());
+			prayers[3] = new StringItem(Tokens.get(Tokens.ASR),prayerTimes[3].getTime());
+			prayers[4] = new StringItem(Tokens.get(Tokens.MAGHRIB),prayerTimes[4].getTime());
+			prayers[5] = new StringItem(Tokens.get(Tokens.ESHA),prayerTimes[5].getTime());
 			form = new Form("Mobile Azan");
 			for (int i = 0; i < prayers.length; i++) {
 				form.append(prayers[i]);
 			}
-			form.addCommand(new Command("Exit",Command.EXIT,1));
-			form.addCommand(new Command("Settings",Command.OK,1));
+			form.addCommand(exit);
+			form.addCommand(set);
 //			form.addCommand(new Command("Stop Azan",Command.STOP,1));
-			form.addCommand(new Command("Test Azan",Command.SCREEN,1));
-			form.addCommand(new Command("Minimize",Command.BACK,1));
+			form.addCommand(test);
+			form.addCommand(hide);
 			form.setCommandListener(this);
 			setFocus();
 		}
-
 		public PrayerTime[] getPrayerTimes() {
 			return prayerTimes;
 		}

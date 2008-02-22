@@ -70,6 +70,7 @@ public class MainForm extends MIDlet implements CommandListener{
 	 * 15- Multiple Azan voices
 	 * 16- Multiple Volume control
 	 * 17- Using Push registery to reload midlet when needed
+	 * 18- Convert audio resources to AMR format
 	 */
 	public MainForm() {
 		settings = Settings.getInstance(this);

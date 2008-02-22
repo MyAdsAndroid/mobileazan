@@ -35,9 +35,10 @@ public class AzanPlayer extends Thread{
 	}
 	
 	private void playAzan() {
-		for(currentPiece = 0;currentPiece < 12;currentPiece ++) {
-			playCurrentPiece();
-		}
+//		for(currentPiece = 0;currentPiece < 12;currentPiece ++) {
+//			playCurrentPiece();
+//		}
+		playCurrentPiece();
 	}
 	
 	public void stop(){
@@ -61,9 +62,9 @@ public class AzanPlayer extends Thread{
 			} catch (MediaException e) {}
 			catch(IllegalStateException e){}
 		}
-		InputStream is = this.getClass().getResourceAsStream("/wav2/" + Integer.toString(currentPiece + 1) + ".wav");
+		InputStream is = this.getClass().getResourceAsStream("/wav2/Makkah.amr");
 		try {
-			player = (Manager.createPlayer(is, "audio/x-wav"));
+			player = (Manager.createPlayer(is, "audio/amr"));
 			if(player.getState()!=Player.CLOSED)
 			player.realize();
 			

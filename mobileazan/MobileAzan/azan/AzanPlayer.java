@@ -21,7 +21,7 @@ import main.Settings;
 public class AzanPlayer extends Thread{
 
 	private Player player;
-	private int currentPiece;
+//	private int currentPiece;
 	private MainForm model;
 
 	public AzanPlayer(MainForm model) {
@@ -42,7 +42,7 @@ public class AzanPlayer extends Thread{
 	}
 	
 	public void stop(){
-		currentPiece = 100;
+//		currentPiece = 100;
 		if(player != null)
 		try {
 			player.stop();

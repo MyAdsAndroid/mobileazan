@@ -3,7 +3,6 @@ package main;
 import java.util.Calendar;
 import java.util.Timer;
 
-import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -33,7 +32,6 @@ public class MainForm extends MIDlet implements CommandListener{
 	private StringItem[] prayers;
 	private PrayerTime[] prayerTimes;
 	private Settings settings;
-	private Alert debug;
 	private TextField latText;
 	private TextField lonText;
 	private TextField gmtText;
@@ -44,6 +42,9 @@ public class MainForm extends MIDlet implements CommandListener{
 	private Command set = new Command(Tokens.get(Tokens.SET),Command.OK,1);
 	private Command test = new Command(Tokens.get(Tokens.TEST),Command.SCREEN,1);
 	private Command hide = new Command(Tokens.get(Tokens.HIDE),Command.BACK,1);
+	private Command stop = new Command(Tokens.get(Tokens.STOP),Command.STOP,1);
+	public Command cancel = new Command(Tokens.get(Tokens.CANCEL),Command.CANCEL,1);
+	public Command save = new Command(Tokens.get(Tokens.SAVE),Command.OK,1);
 
 	private Timer timer;
 	private AzanPlayer player;
@@ -80,11 +81,6 @@ public class MainForm extends MIDlet implements CommandListener{
 	public MainForm() {
 		settings = Settings.getInstance(this);
 		settings.load();
-		debug = new Alert("Debug");
-		debug.setString("Lat:" + Float.toString(settings.getLat()) +
-				"Lon:" + Float.toString(settings.getLon()) +
-				"GMT:" + Integer.toString(settings.getGmt())
-		);
 		calculatePrayerTimes();
 		int i;
 		Calendar now = Calendar.getInstance();
@@ -96,19 +92,19 @@ public class MainForm extends MIDlet implements CommandListener{
 			timer.schedule(new FajrAzanTask(this), prayerTimes[0].getCalendar().getTime());
 		}
 		if (i<= 2) { //duhr
-			timer.schedule(new AzanTask(this,"Duhr"), prayerTimes[2].getCalendar().getTime());
+			timer.schedule(new AzanTask(this,Tokens.get(Tokens.DUHR)), prayerTimes[2].getCalendar().getTime());
 
 		}
 		if (i<= 3) { //asr
-			timer.schedule(new AzanTask(this,"Asr"), prayerTimes[3].getCalendar().getTime());
+			timer.schedule(new AzanTask(this,Tokens.get(Tokens.ASR)), prayerTimes[3].getCalendar().getTime());
 
 		}
 		if (i<= 4) { //maghrib
-			timer.schedule(new AzanTask(this,"Maghrib"), prayerTimes[4].getCalendar().getTime());
+			timer.schedule(new AzanTask(this,Tokens.get(Tokens.MAGHRIB)), prayerTimes[4].getCalendar().getTime());
 
 		}
 		if (i<= 5) { //esha
-			timer.schedule(new AzanTask(this,"Esha"), prayerTimes[5].getCalendar().getTime());
+			timer.schedule(new AzanTask(this,Tokens.get(Tokens.ESHA)), prayerTimes[5].getCalendar().getTime());
 
 		}
 		if (i<= 6) { //calculation task
@@ -132,35 +128,28 @@ public class MainForm extends MIDlet implements CommandListener{
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
-//		Display.getDisplay(this).setCurrent(debug);
-//		try {
-//		Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//		e.printStackTrace();
-//		}
 		Display.getDisplay(this).setCurrent(form);
 	}
 
 	public void commandAction(Command cmd, Displayable arg1) {
-		String label = cmd.getLabel();
 		if(cmd == exit)
 			notifyDestroyed();
 		else if (cmd == set) {
-			optionsForm = new Form("Options");
-			latText = new TextField("Latitude :",Float.toString(settings.getLat()),7,TextField.DECIMAL);
+			optionsForm = new Form(Tokens.get(Tokens.SET));
+			latText = new TextField(Tokens.get(Tokens.LAT),Float.toString(settings.getLat()),7,TextField.DECIMAL);
 			optionsForm.append(latText);
-			lonText = new TextField("Longitude :",Float.toString(settings.getLon()),7,TextField.DECIMAL);
+			lonText = new TextField(Tokens.get(Tokens.LON),Float.toString(settings.getLon()),7,TextField.DECIMAL);
 			optionsForm.append(lonText);
-			gmtText = new TextField("GMT :",Integer.toString(settings.getGmt()),5,TextField.NUMERIC);
+			gmtText = new TextField(Tokens.get(Tokens.GMT),Integer.toString(settings.getGmt()),5,TextField.NUMERIC);
 			optionsForm.append(gmtText);
-			methodList = new ChoiceGroup("Method",ChoiceGroup.POPUP);//|ChoiceGroup.TEXT_WRAP_ON);
+			methodList = new ChoiceGroup(Tokens.get(Tokens.METHOD),ChoiceGroup.POPUP);//|ChoiceGroup.TEXT_WRAP_ON);
 			methodList.setFitPolicy(ChoiceGroup.TEXT_WRAP_ON);
-			methodList.append("Egyptian Survey", null);
-			methodList.append("Karachi University (Shafey)", null);
-			methodList.append("Karachi University (Hanafy)", null);
-			methodList.append("Society of North America", null);
-			methodList.append("Muslim League", null);
-			methodList.append("Umm AlQora", null);
+			methodList.append(Tokens.get(Tokens.EGYPTIAN_SURVEY), null);
+			methodList.append(Tokens.get(Tokens.KARACHI_UNIVERSITY_SHAFEY), null);
+			methodList.append(Tokens.get(Tokens.KARACHI_UNIVERSITY_HANAFI), null);
+			methodList.append(Tokens.get(Tokens.SOCIETY_OF_NORTH_AMERICA), null);
+			methodList.append(Tokens.get(Tokens.MUSLIM_LEAGUE), null);
+			methodList.append(Tokens.get(Tokens.UMM_ALQURA), null);
 			boolean [] flags = new boolean[6];
 			for (int i = 0; i < flags.length; i++) {
 				flags[i] = false;
@@ -168,17 +157,17 @@ public class MainForm extends MIDlet implements CommandListener{
 			flags[settings.getMethod()-1] = true;
 			methodList.setSelectedFlags(flags);
 			optionsForm.append(methodList);
-			volGauge = new Gauge("Volume:",true,100,settings.getVol());
+			volGauge = new Gauge(Tokens.get(Tokens.VOLUME),true,100,settings.getVol());
 			optionsForm.append(volGauge);
-			optionsForm.addCommand(new Command("Cancel",Command.CANCEL,1));
-			optionsForm.addCommand(new Command("Save",Command.OK,1));
+			optionsForm.addCommand(cancel);
+			optionsForm.addCommand(save);
 			optionsForm.setCommandListener(new OptionsListener(this));
 			Display.getDisplay(this).setCurrent(optionsForm);
-		} else if (label.equals("Stop Azan")) {
+		} else if (cmd == stop) {
 			player.stop();
 			setFocus();
 		} else if (cmd == test) {
-				showAzanForm("Test");
+				showAzanForm(Tokens.get(Tokens.TEST));
 				player = new AzanPlayer(this);
 				player.start();
 			} else if (cmd == hide) {
@@ -208,13 +197,12 @@ public class MainForm extends MIDlet implements CommandListener{
 			prayers[3] = new StringItem(Tokens.get(Tokens.ASR),prayerTimes[3].getTime());
 			prayers[4] = new StringItem(Tokens.get(Tokens.MAGHRIB),prayerTimes[4].getTime());
 			prayers[5] = new StringItem(Tokens.get(Tokens.ESHA),prayerTimes[5].getTime());
-			form = new Form("Mobile Azan");
+			form = new Form(Tokens.get(Tokens.MOBILE_AZAN));
 			for (int i = 0; i < prayers.length; i++) {
 				form.append(prayers[i]);
 			}
 			form.addCommand(exit);
 			form.addCommand(set);
-//			form.addCommand(new Command("Stop Azan",Command.STOP,1));
 			form.addCommand(test);
 			form.addCommand(hide);
 			form.setCommandListener(this);
@@ -224,10 +212,10 @@ public class MainForm extends MIDlet implements CommandListener{
 			return prayerTimes;
 		}
 		public void showAzanForm(String prayerName) {
-			azanForm = new Form("Azan");
-			StringItem timeToPrayer = new StringItem("Time to pray:",prayerName);
+			azanForm = new Form(Tokens.get(Tokens.AZAN));
+			StringItem timeToPrayer = new StringItem(Tokens.get(Tokens.TIME_TO_PRAY),prayerName);
 			azanForm.append(timeToPrayer);
-			azanForm.addCommand(new Command("Stop Azan",Command.STOP,1));
+			azanForm.addCommand(stop);
 			azanForm.setCommandListener(this);
 			Display.getDisplay(this).setCurrent(azanForm);
 			resumeRequest();

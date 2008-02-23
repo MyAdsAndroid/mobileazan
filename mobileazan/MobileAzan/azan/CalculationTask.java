@@ -8,6 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import main.MainForm;
+import main.Tokens;
 
 /**
  * @author Alaa
@@ -33,10 +34,10 @@ public class CalculationTask extends TimerTask {
 		model.calculatePrayerTimes();
 		prayers = model.getPrayerTimes();
 		timer.schedule(new FajrAzanTask(model), prayers[0].getCalendar().getTime());
-		timer.schedule(new AzanTask(model,"Duhr"), prayers[2].getCalendar().getTime());
-		timer.schedule(new AzanTask(model,"Asr"), prayers[3].getCalendar().getTime());
-		timer.schedule(new AzanTask(model,"Maghrib"), prayers[4].getCalendar().getTime());
-		timer.schedule(new AzanTask(model,"Esha"), prayers[5].getCalendar().getTime());
+		timer.schedule(new AzanTask(model,Tokens.get(Tokens.DUHR)), prayers[2].getCalendar().getTime());
+		timer.schedule(new AzanTask(model,Tokens.get(Tokens.ASR)), prayers[3].getCalendar().getTime());
+		timer.schedule(new AzanTask(model,Tokens.get(Tokens.MAGHRIB)), prayers[4].getCalendar().getTime());
+		timer.schedule(new AzanTask(model,Tokens.get(Tokens.ESHA)), prayers[5].getCalendar().getTime());
 		Calendar tomorrow = Calendar.getInstance();
 		tomorrow.set(Calendar.DAY_OF_MONTH, tomorrow.get(Calendar.DAY_OF_MONTH)+1);
 		tomorrow.set(Calendar.HOUR_OF_DAY, 0);

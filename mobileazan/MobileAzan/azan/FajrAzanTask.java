@@ -6,6 +6,7 @@ package azan;
 import java.util.TimerTask;
 
 import main.MainForm;
+import main.Tokens;
 
 
 /**
@@ -22,7 +23,7 @@ public class FajrAzanTask extends TimerTask {
 	}
 	
 	public void run() {
-		model.showAzanForm("Fajr");
+		model.showAzanForm(Tokens.get(Tokens.FAJR));
 		model.setPlayer(new AzanPlayer(model));
 		model.getPlayer().start();
 	}

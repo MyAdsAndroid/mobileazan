@@ -34,7 +34,32 @@ public class Tokens {
 	public static final int SET = 21;
 	public static final int TEST = 22;
 	public static final int EXIT = 23;
+	public static final int STOP = 24;
+	public static final int SAVE = 25;
+	public static final int CANCEL = 26;
 
+	public static final int MOBILE_AZAN = 30;
+	public static final int AZAN = 31;
+	public static final int TIME_TO_PRAY = 32;
+
+	public static final int EGYPTIAN_SURVEY = 40;
+	public static final int KARACHI_UNIVERSITY_SHAFEY = 41;
+	public static final int KARACHI_UNIVERSITY_HANAFI = 42;
+	public static final int SOCIETY_OF_NORTH_AMERICA = 43;
+	public static final int MUSLIM_LEAGUE = 44;
+	public static final int UMM_ALQURA = 45;
+	
+	public static final int LAT = 50;
+	public static final int LON = 51;
+	public static final int GMT = 52;
+	public static final int METHOD = 53;
+	public static final int VOLUME = 54;
+//	public static final int
+//	public static final int
+//	public static final int
+//	public static final int
+//	public static final int
+	
 	private static int lang = ENGLISH; 
 	
 	static {
@@ -67,9 +92,43 @@ public class Tokens {
 			case SET:
 				return "≈⁄œ«œ« ";
 			case TEST:
-				return "«Œ »«—";
+				return "«Œ »«— «·√–«‰";
 			case EXIT:
 				return "Œ—ÊÃ";
+			case STOP:
+				return "≈Ìﬁ«› «·√–«‰";
+			case SAVE:
+				return "Õ›Ÿ";
+			case CANCEL:
+				return "≈·€«¡";
+			case MOBILE_AZAN:
+				return "√–«‰ «·ÃÊ«·";
+			case AZAN:
+				return "«·√–«‰";
+			case TIME_TO_PRAY:
+				return "Êﬁ  ’·«… :";
+			case EGYPTIAN_SURVEY:
+				return "ÂÌ∆… «·„”«Õ… «·„’—Ì…";
+			case KARACHI_UNIVERSITY_SHAFEY:
+				return "Ã«„⁄… ﬂ—« ‘Ì (‘«›⁄Ì)";
+			case KARACHI_UNIVERSITY_HANAFI:
+				return "Ã«„⁄… ﬂ—« ‘Ì (Õ‰›Ì)";
+			case SOCIETY_OF_NORTH_AMERICA:
+				return "„Ã„⁄ √„—Ìﬂ« «·‘„«·Ì…";
+			case MUSLIM_LEAGUE:
+				return "—«»ÿ… «·⁄«·„ «·≈”·«„Ì";
+			case UMM_ALQURA:
+				return "Ã«„⁄… √„ «·ﬁ—Ï";
+			case LAT:
+				return "Œÿ «·⁄—÷ :";
+			case LON:
+				return "Œÿ «·ÿÊ· :";
+			case GMT:
+				return "«· ÊﬁÌ  «·„Õ·Ì :";
+			case METHOD:
+				return "ÿ—Ìﬁ… «·Õ”«» :";
+			case VOLUME:
+				return "„” ÊÏ «·’Ê  :";
 			}
 		} else if(lang == ENGLISH){
 			switch(tokenID) {
@@ -93,6 +152,40 @@ public class Tokens {
 				return "Test Azan";
 			case EXIT:
 				return "Exit";
+			case STOP:
+				return "Stop Azan";
+			case SAVE:
+				return "Save";
+			case CANCEL:
+				return "Cancel";
+			case MOBILE_AZAN:
+				return "Mobile Azan";
+			case AZAN:
+				return "Azan";
+			case TIME_TO_PRAY:
+				return "Time to pray:";
+			case EGYPTIAN_SURVEY:
+				return "Egyptian Survey";
+			case KARACHI_UNIVERSITY_SHAFEY:
+				return "Karachi university (Shafey)";
+			case KARACHI_UNIVERSITY_HANAFI:
+				return "Karachi university (Hanafi)";
+			case SOCIETY_OF_NORTH_AMERICA:
+				return "Society of North America";
+			case MUSLIM_LEAGUE:
+				return "Muslim League";
+			case UMM_ALQURA:
+				return "Umm AlQura University";
+			case LAT:
+				return "Latitude :";
+			case LON:
+				return "Longitude :";
+			case GMT:
+				return "Time zone :";
+			case METHOD:
+				return "Method :";
+			case VOLUME:
+				return "Volume :";
 			}
 			
 		}

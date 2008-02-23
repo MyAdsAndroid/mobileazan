@@ -22,11 +22,10 @@ public class OptionsListener implements CommandListener {
 	/* (non-Javadoc)
 	 * @see javax.microedition.lcdui.CommandListener#commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable)
 	 */
-	public void commandAction(Command arg0, Displayable arg1) {
-		String label = arg0.getLabel();
-		if(label.equals("Cancel"))
+	public void commandAction(Command cmd, Displayable arg1) {
+		if(cmd == mainForm.cancel)
 			mainForm.setFocus();
-		else if (label.equals("Save")) {
+		else if (cmd == mainForm.save) {
 			mainForm.saveSettings();
 			mainForm.calculatePrayerTimes();
 			mainForm.setFocus();

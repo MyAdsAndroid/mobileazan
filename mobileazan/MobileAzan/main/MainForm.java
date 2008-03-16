@@ -71,13 +71,16 @@ public class MainForm extends MIDlet implements CommandListener{
 	 * 10- Return to the right form when midlet is resumed
 	 * ------------------done--------------------------------------11- Enable user to play, stop azan
 	 * ------------------done--------------------------------------12- Add volume level control
-	 * 13- Arabize
+	 * ------------------done--------------------------------------13- Arabize
 	 * 14- Optimize by removing all items from memory before minimizing and reallocate on startApp()
 	 * 15- Multiple Azan voices
 	 * 16- Multiple Volume control
 	 * 17- Using Push registery to reload midlet when needed
-	 * 18- Convert audio resources to AMR format
+	 * ------------------done--------------------------------------18- Convert audio resources to AMR format
 	 */
+	// TODO Redesign with an MVC design
+	// TODO Write documentation in code
+	// TODO Write user manual
 	public MainForm() {
 		settings = Settings.getInstance(this);
 		settings.load();

@@ -1,4 +1,4 @@
-package azan;
+package model;
 
 import pt.Date;
 import pt.Location;
@@ -11,8 +11,8 @@ import pt.PrayerTime;
  *
  */
 public class PT {
-	public static azan.PrayerTime [] getPrayerTimes(int year, int month, int day,float latitude,float longitude,float gmt,int method) {
-		azan.PrayerTime[] prayers = new azan.PrayerTime[7];
+	public static model.PrayerTime [] getPrayerTimes(int year, int month, int day,float latitude,float longitude,float gmt,int method) {
+		model.PrayerTime[] prayers = new model.PrayerTime[7];
 	    int i;
 	  
 	    Location loc = new Location();
@@ -60,9 +60,9 @@ public class PT {
 	     
 
 	    for (i = 0; i < 6; i++) {
-	    	prayers[i] = new azan.PrayerTime(year,month,day,ptList[i].hour,ptList[i].minute,ptList[i].second);
+	    	prayers[i] = new model.PrayerTime(year,month,day,ptList[i].hour,ptList[i].minute,ptList[i].second);
 	    }
-	    prayers[6] = new azan.PrayerTime(year,month,day+1,nextFajr[0].hour,nextFajr[0].minute,nextFajr[0].second);
+	    prayers[6] = new model.PrayerTime(year,month,day+1,nextFajr[0].hour,nextFajr[0].minute,nextFajr[0].second);
 
 		return prayers;
 	}

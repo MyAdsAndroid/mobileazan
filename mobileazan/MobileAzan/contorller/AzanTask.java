@@ -1,11 +1,12 @@
 /**
  * 
  */
-package azan;
+package contorller;
 
 import java.util.TimerTask;
 
-import main.MainForm;
+import view.MainForm;
+
 
 
 /**

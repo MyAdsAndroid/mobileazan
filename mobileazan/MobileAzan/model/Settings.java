@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main;
+package model;
 
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.rms.RecordEnumeration;

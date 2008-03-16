@@ -1,4 +1,4 @@
-package main;
+package view;
 
 import java.util.Calendar;
 import java.util.Timer;
@@ -17,12 +17,16 @@ import javax.microedition.media.PlayerListener;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
-import azan.AzanPlayer;
-import azan.AzanTask;
-import azan.CalculationTask;
-import azan.FajrAzanTask;
-import azan.PT;
-import azan.PrayerTime;
+import contorller.AzanPlayer;
+import contorller.AzanTask;
+import contorller.CalculationTask;
+import contorller.FajrAzanTask;
+import contorller.OptionsListener;
+
+import model.PT;
+import model.PrayerTime;
+import model.Settings;
+
 
 public class MainForm extends MIDlet implements CommandListener{
 

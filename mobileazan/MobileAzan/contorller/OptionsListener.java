@@ -1,11 +1,13 @@
 /**
  * 
  */
-package main;
+package contorller;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Displayable;
+
+import view.MainForm;
 
 /**
  * @author Alaa

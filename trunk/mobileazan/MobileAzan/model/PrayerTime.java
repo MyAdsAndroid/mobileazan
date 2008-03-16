@@ -1,4 +1,4 @@
-package azan;
+package model;
 
 import java.util.Calendar;
 

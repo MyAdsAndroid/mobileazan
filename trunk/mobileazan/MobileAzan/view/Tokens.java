@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main;
+package view;
 
 /**
  * @author Alaa

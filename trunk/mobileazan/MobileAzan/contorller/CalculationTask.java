@@ -1,14 +1,18 @@
 /**
  * 
  */
-package azan;
+package contorller;
 
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import main.MainForm;
-import main.Tokens;
+import model.PrayerTime;
+
+
+import view.MainForm;
+import view.Tokens;
+
 
 /**
  * @author Alaa

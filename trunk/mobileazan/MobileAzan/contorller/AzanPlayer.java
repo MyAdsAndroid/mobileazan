@@ -1,7 +1,7 @@
 /**
  * 
  */
-package azan;
+package contorller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,8 +11,9 @@ import javax.microedition.media.MediaException;
 import javax.microedition.media.Player;
 import javax.microedition.media.control.VolumeControl;
 
-import main.MainForm;
-import main.Settings;
+import view.MainForm;
+
+import model.Settings;
 
 /**
  * @author Alaa

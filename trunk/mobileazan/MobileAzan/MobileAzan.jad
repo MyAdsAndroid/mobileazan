@@ -2,6 +2,6 @@ MIDlet-Version: 1.0.0
 MIDlet-Vendor: Alaa El-Din Farouk
 MIDlet-Jar-URL: MobileAzan.jar
 MicroEdition-Configuration: CLDC-1.1
-MIDlet-1: Mobile Azan,/cd.png,main.MainForm
+MIDlet-1: Mobile Azan,/cd.png,view.MainForm
 MicroEdition-Profile: MIDP-2.0
 MIDlet-Name: Mobile Azan

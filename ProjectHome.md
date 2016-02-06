@@ -1,0 +1,1 @@
+J2ME application that calculates prayers times and play azan in time.
